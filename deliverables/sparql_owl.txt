@@ -1,0 +1,80 @@
+# 5 SPARQL queries for bookrec.owl
+
+
+# Query 1 - all books with their title and author
+PREFIX br:   <http://www.semanticweb.org/bookrec#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?title ?author
+WHERE {
+    ?book rdf:type br:Book ;
+          br:title  ?title ;
+          br:hasAuthor ?author .
+}
+ORDER BY ?title
+
+
+# Query 2 - users with their reading level and preferred theme
+PREFIX br:   <http://www.semanticweb.org/bookrec#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?userName ?levelName ?themeName
+WHERE {
+    ?user  rdf:type br:User ;
+           rdfs:label ?userName ;
+           br:hasReadingLevel ?level ;
+           br:prefersTheme ?theme .
+    ?level rdfs:label ?levelName .
+    ?theme rdfs:label ?themeName .
+}
+ORDER BY ?userName
+
+
+# Query 3 - books for Advanced readers
+PREFIX br:   <http://www.semanticweb.org/bookrec#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?title
+WHERE {
+    ?book rdf:type br:Book ;
+          br:title  ?title ;
+          br:suitableReadingLevel br:Advanced .
+}
+
+
+# Query 4 - number of books per theme
+PREFIX br:   <http://www.semanticweb.org/bookrec#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?themeName (COUNT(?book) AS ?numberOfBooks)
+WHERE {
+    ?book  rdf:type br:Book ;
+           br:hasTheme ?theme .
+    ?theme rdfs:label ?themeName .
+}
+GROUP BY ?themeName
+ORDER BY DESC(?numberOfBooks) ?themeName
+
+
+# Query 5 - for each user, books that share their preferred theme
+# add FILTER(?bookLevel = ?userLevel) to get the strict recommendation rule
+PREFIX br:   <http://www.semanticweb.org/bookrec#>
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?userName ?bookTitle ?bookLevelName ?userLevelName
+WHERE {
+    ?user  rdf:type br:User ;
+           rdfs:label ?userName ;
+           br:prefersTheme ?theme ;
+           br:hasReadingLevel ?userLevel .
+    ?book  rdf:type br:Book ;
+           br:title ?bookTitle ;
+           br:hasTheme ?theme ;
+           br:suitableReadingLevel ?bookLevel .
+    ?bookLevel rdfs:label ?bookLevelName .
+    ?userLevel rdfs:label ?userLevelName .
+}
+ORDER BY ?userName ?bookTitle

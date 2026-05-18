@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+<!-- Exercise 5: OWL ontology for the book recommendation system -->
+<rdf:RDF xmlns="http://www.semanticweb.org/bookrec#"
+     xml:base="http://www.semanticweb.org/bookrec"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:br="http://www.semanticweb.org/bookrec#">
+
+    <owl:Ontology rdf:about="http://www.semanticweb.org/bookrec">
+        <rdfs:label>Book Recommendation Ontology</rdfs:label>
+        <rdfs:comment>OWL ontology for the book recommendation system.</rdfs:comment>
+    </owl:Ontology>
+
+    <!-- classes -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/bookrec#Book">
+        <rdfs:label>Book</rdfs:label>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/bookrec#User"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/bookrec#Theme"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/bookrec#ReadingLevel"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/bookrec#User">
+        <rdfs:label>User</rdfs:label>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/bookrec#Theme"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/bookrec#ReadingLevel"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/bookrec#Theme">
+        <rdfs:label>Theme</rdfs:label>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/bookrec#ReadingLevel"/>
+    </owl:Class>
+
+    <owl:Class rdf:about="http://www.semanticweb.org/bookrec#ReadingLevel">
+        <rdfs:label>ReadingLevel</rdfs:label>
+    </owl:Class>
+
+    <!-- object properties -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/bookrec#hasTheme">
+        <rdfs:label>hasTheme</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/bookrec#Book"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/bookrec#Theme"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/bookrec#suitableReadingLevel">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label>suitableReadingLevel</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/bookrec#Book"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/bookrec#ReadingLevel"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/bookrec#prefersTheme">
+        <rdfs:label>prefersTheme</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/bookrec#User"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/bookrec#Theme"/>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/bookrec#hasReadingLevel">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label>hasReadingLevel</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/bookrec#User"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/bookrec#ReadingLevel"/>
+    </owl:ObjectProperty>
+
+    <!-- datatype properties -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/bookrec#title">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:label>title</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/bookrec#Book"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/bookrec#hasAuthor">
+        <rdfs:label>hasAuthor</rdfs:label>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/bookrec#Book"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+
+    <!-- reading levels -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/bookrec#Beginner">
+        <rdf:type rdf:resource="http://www.semanticweb.org/bookrec#ReadingLevel"/>
+        <rdfs:label>Beginner</rdfs:label>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/bookrec#Intermediate">
+        <rdf:type rdf:resource="http://www.semanticweb.org/bookrec#ReadingLevel"/>
+        <rdfs:label>Intermediate</rdfs:label>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/bookrec#Advanced">
+        <rdf:type rdf:resource="http://www.semanticweb.org/bookrec#ReadingLevel"/>
+        <rdfs:label>Advanced</rdfs:label>
+    </owl:NamedIndividual>
+
+    <!-- themes -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/bookrec#ScienceFiction">
+        <rdf:type rdf:resource="http://www.semanticweb.org/bookrec#Theme"/>
+        <rdfs:label>Science Fiction</rdfs:label>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/bookrec#Fantasy">
+        <rdf:type rdf:resource="http://www.semanticweb.org/bookrec#Theme"/>
+        <rdfs:label>Fantasy</rdfs:label>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/bookrec#Mystery">
+        <rdf:type rdf:resource="http://www.semanticweb.org/bookrec#Theme"/>
+        <rdfs:label>Mystery</rdfs:label>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/bookrec#Murder">
+        <rdf:type rdf:resource="http://www.semanticweb.org/bookrec#Theme"/>
+        <rdfs:label>Murder</rdfs:label>
+    </owl:NamedIndividual>
+
+    <!-- users -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/bookrec#Alice">
+        <rdf:type rdf:resource="http://www.semanticweb.org/bookrec#User"/>
+        <rdfs:label>Alice</rdfs:label>
+        <br:hasReadingLevel rdf:resource="http://www.semanticweb.org/bookrec#Intermediate"/>
+        <br:prefersTheme rdf:resource="http://www.semanticweb.org/bookrec#ScienceFiction"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/bookrec#Bob">
+        <rdf:type rdf:resource="http://www.semanticweb.org/bookrec#User"/>
+        <rdfs:label>Bob</rdfs:label>
+        <br:hasReadingLevel rdf:resource="http://www.semanticweb.org/bookrec#Beginner"/>
+        <br:prefersTheme rdf:resource="http://www.semanticweb.org/bookrec#Mystery"/>
+    </owl:NamedIndividual>
+
+    <!-- books -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/bookrec#Dune">
+        <rdf:type rdf:resource="http://www.semanticweb.org/bookrec#Book"/>
+        <rdfs:label>Dune</rdfs:label>
+        <br:title>Dune</br:title>
+        <br:hasAuthor>Frank Herbert</br:hasAuthor>
+        <br:hasTheme rdf:resource="http://www.semanticweb.org/bookrec#ScienceFiction"/>
+        <br:hasTheme rdf:resource="http://www.semanticweb.org/bookrec#Fantasy"/>
+        <br:suitableReadingLevel rdf:resource="http://www.semanticweb.org/bookrec#Advanced"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/bookrec#TheSilentPatient">
+        <rdf:type rdf:resource="http://www.semanticweb.org/bookrec#Book"/>
+        <rdfs:label>The Silent Patient</rdfs:label>
+        <br:title>The Silent Patient</br:title>
+        <br:hasAuthor>Alex Michaelides</br:hasAuthor>
+        <br:hasTheme rdf:resource="http://www.semanticweb.org/bookrec#Mystery"/>
+        <br:hasTheme rdf:resource="http://www.semanticweb.org/bookrec#Murder"/>
+        <br:suitableReadingLevel rdf:resource="http://www.semanticweb.org/bookrec#Intermediate"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/bookrec#HungerGames">
+        <rdf:type rdf:resource="http://www.semanticweb.org/bookrec#Book"/>
+        <rdfs:label>Hunger Games</rdfs:label>
+        <br:title>Hunger Games</br:title>
+        <br:hasAuthor>Suzanne Collins</br:hasAuthor>
+        <br:hasTheme rdf:resource="http://www.semanticweb.org/bookrec#ScienceFiction"/>
+        <br:hasTheme rdf:resource="http://www.semanticweb.org/bookrec#Fantasy"/>
+        <br:suitableReadingLevel rdf:resource="http://www.semanticweb.org/bookrec#Beginner"/>
+    </owl:NamedIndividual>
+
+    <!-- defined classes -->
+
+    <!-- science fiction book -->
+    <owl:Class rdf:about="http://www.semanticweb.org/bookrec#ScienceFictionBook">
+        <rdfs:label>ScienceFictionBook</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bookrec#Book"/>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/bookrec#Book"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/bookrec#hasTheme"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/bookrec#ScienceFiction"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+
+    <!-- mystery book -->
+    <owl:Class rdf:about="http://www.semanticweb.org/bookrec#MysteryBook">
+        <rdfs:label>MysteryBook</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bookrec#Book"/>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/bookrec#Book"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/bookrec#hasTheme"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/bookrec#Mystery"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+
+    <!-- recommended for Alice -->
+    <owl:Class rdf:about="http://www.semanticweb.org/bookrec#RecommendedBookForAlice">
+        <rdfs:label>RecommendedBookForAlice</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bookrec#Book"/>
+        <rdfs:comment>A book recommended for Alice: Science Fiction theme and Intermediate reading level.</rdfs:comment>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/bookrec#Book"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/bookrec#hasTheme"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/bookrec#ScienceFiction"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/bookrec#suitableReadingLevel"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/bookrec#Intermediate"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+
+    <!-- recommended for Bob -->
+    <owl:Class rdf:about="http://www.semanticweb.org/bookrec#RecommendedBookForBob">
+        <rdfs:label>RecommendedBookForBob</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bookrec#Book"/>
+        <rdfs:comment>A book recommended for Bob: Mystery theme and Beginner reading level.</rdfs:comment>
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:intersectionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/bookrec#Book"/>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/bookrec#hasTheme"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/bookrec#Mystery"/>
+                    </owl:Restriction>
+                    <owl:Restriction>
+                        <owl:onProperty rdf:resource="http://www.semanticweb.org/bookrec#suitableReadingLevel"/>
+                        <owl:hasValue rdf:resource="http://www.semanticweb.org/bookrec#Beginner"/>
+                    </owl:Restriction>
+                </owl:intersectionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+    </owl:Class>
+
+</rdf:RDF>
