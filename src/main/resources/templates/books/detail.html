@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${book.title})}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+<main class="container">
+    <p th:if="${message}" class="flash" th:text="${message}"></p>
+    <p><a th:href="@{/books}">&larr; Back to all books</a></p>
+
+    <h1 th:text="${book.title}">Title</h1>
+    <p class="tags">
+        <span class="tag" th:each="t : ${book.themes}" th:text="${t}">Theme</span>
+    </p>
+
+    <table class="info">
+        <tr>
+            <th>Author(s)</th>
+            <td th:text="${book.authorsText}">Authors</td>
+        </tr>
+        <tr>
+            <th>Genre(s)</th>
+            <td th:text="${book.themesText}">Themes</td>
+        </tr>
+        <tr>
+            <th>Reading level</th>
+            <td th:text="${book.readingLevel}">Level</td>
+        </tr>
+    </table>
+
+    <h2>About this book</h2>
+    <p th:text="${book.description} ?: 'No description available.'">Description</p>
+
+    <p><a class="btn" th:href="@{'/books/' + ${book.id} + '/edit'}">Edit this book</a></p>
+</main>
+
+<div th:replace="~{fragments/layout :: chatWidget}"></div>
+<script th:replace="~{fragments/layout :: chatScript}"></script>
+</body>
+</html>

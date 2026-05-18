@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${mode == 'add' ? 'Add a book' : 'Edit book'})}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+<main class="container">
+    <h1 th:text="${mode == 'add'} ? 'Add a new book' : 'Edit book'">Book form</h1>
+
+    <form method="post" th:action="@{/books/save}" class="book-form">
+        <input type="hidden" name="id" th:value="${book.id}"/>
+
+        <label>Title
+            <input type="text" name="title" th:value="${book.title}" required/>
+        </label>
+
+        <label>Author(s) <small>separate multiple with commas</small>
+            <input type="text" name="authors" th:value="${book.authorsText}"/>
+        </label>
+
+        <label>Genre(s) <small>separate multiple with commas</small>
+            <input type="text" name="themes" th:value="${book.themesText}"/>
+        </label>
+
+        <label>Reading level
+            <select name="readingLevel">
+                <option value="Beginner" th:selected="${book.readingLevel == 'Beginner'}">Beginner</option>
+                <option value="Intermediate" th:selected="${book.readingLevel == 'Intermediate'}">Intermediate</option>
+                <option value="Advanced" th:selected="${book.readingLevel == 'Advanced'}">Advanced</option>
+            </select>
+        </label>
+
+        <label>Description
+            <textarea name="description" rows="4" th:text="${book.description}"></textarea>
+        </label>
+
+        <button type="submit" class="btn">Save book</button>
+    </form>
+</main>
+
+<div th:replace="~{fragments/layout :: chatWidget}"></div>
+<script th:replace="~{fragments/layout :: chatScript}"></script>
+</body>
+</html>

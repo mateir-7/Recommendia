@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Bookworm')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+<main class="container">
+    <h1>Welcome to Bookworm</h1>
+    <p class="subtitle">Discover your next favourite read.</p>
+
+    <p>There are <strong th:text="${bookCount}">0</strong> books on the shelf right now.
+        <a th:href="@{/books}">Take a look</a>.</p>
+
+    <h2>Picked for our readers</h2>
+    <p class="hint">Everyone gets books that match the genre they love and their
+        reading level.</p>
+
+    <div class="user-grid">
+        <div class="user-card" th:each="user : ${users}"
+             th:with="recs=${recommendations.get(user.id)}">
+            <h3 th:text="${user.name}">Name</h3>
+            <p class="tags">
+                <span class="tag" th:text="'Level: ' + ${user.readingLevel}">Level</span>
+                <span class="tag" th:text="'Loves: ' + ${user.preferredTheme}">Theme</span>
+            </p>
+            <p th:if="${recs.isEmpty()}" class="hint">Nothing matches just yet.</p>
+            <ul th:unless="${recs.isEmpty()}" class="rec-list">
+                <li th:each="b : ${recs}">
+                    <a th:href="@{'/books/' + ${b.id}}" th:text="${b.title}">Book</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{fragments/layout :: chatWidget}"></div>
+<script th:replace="~{fragments/layout :: chatScript}"></script>
+</body>
+</html>
