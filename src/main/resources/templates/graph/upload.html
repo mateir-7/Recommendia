@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Graph View - Bookworm')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+<main class="container">
+    <h1>Graph View</h1>
+    <p class="hint">Upload an RDF/XML file to see its contents drawn as a graph.</p>
+
+    <form method="post" th:action="@{/graph/upload}" enctype="multipart/form-data"
+          class="upload-form">
+        <input type="file" name="file" accept=".rdf,.xml,.owl,.rdfs"/>
+        <button type="submit" class="btn">Upload &amp; visualize</button>
+    </form>
+
+    <p th:if="${error}" class="error" th:text="${error}"></p>
+
+    <div th:if="${imageBase64}" class="graph-result">
+        <p>
+            <strong th:text="${fileName}">file</strong> &mdash;
+            <span th:text="${triples}">0</span> connections,
+            <span th:text="${nodes}">0</span> nodes.
+            Blue circles are resources, yellow circles are text values.
+        </p>
+        <img class="graph-img" alt="RDF graph"
+             th:src="'data:image/png;base64,' + ${imageBase64}"/>
+    </div>
+</main>
+
+<div th:replace="~{fragments/layout :: chatWidget}"></div>
+<script th:replace="~{fragments/layout :: chatScript}"></script>
+</body>
+</html>
