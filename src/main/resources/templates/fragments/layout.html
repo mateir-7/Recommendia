@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title th:text="${title}">Bookworm</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<nav th:fragment="navbar" class="navbar">
+    <a class="brand" th:href="@{/}">Bookworm</a>
+    <div class="nav-links">
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/books}">Books</a>
+        <a th:href="@{/books/add}">Add a book</a>
+        <a th:href="@{/graph}">Graph</a>
+    </div>
+</nav>
+
+<div th:fragment="chatWidget" id="chat-widget"
+     th:attr="data-context=${chatContext} ?: 'general', data-book-id=${chatBookId} ?: ''">
+    <button id="chat-toggle" type="button" title="Library Assistant">&#128172;</button>
+    <div id="chat-panel" class="chat-hidden">
+        <div id="chat-header">
+            <span>Library Assistant</span>
+            <span id="chat-close" title="Close">&times;</span>
+        </div>
+        <div id="chat-messages">
+            <div class="chat-msg chat-bot">Hi there! Ask me anything about our books.</div>
+        </div>
+        <div id="chat-starters"></div>
+        <form id="chat-form">
+            <input id="chat-input" type="text" autocomplete="off"
+                   placeholder="Ask about a book..."/>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</div>
+
+<script th:fragment="chatScript" th:src="@{/js/chat.js}"></script>
+
+</body>
+</html>
