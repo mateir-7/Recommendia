@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- seed data for the app: books and users -->
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:br="http://www.semanticweb.org/bookrec#">
+
+    <!-- books -->
+
+    <br:Book rdf:about="http://www.semanticweb.org/bookrec#dune">
+        <br:title>Dune</br:title>
+        <br:hasAuthor>Frank Herbert</br:hasAuthor>
+        <br:hasTheme>Science Fiction</br:hasTheme>
+        <br:hasTheme>Fantasy</br:hasTheme>
+        <br:readingLevel>Advanced</br:readingLevel>
+        <br:description>Dune follows Paul Atreides on the desert planet Arrakis as noble houses fight over the precious spice melange. A landmark of science fiction with deep political and ecological themes.</br:description>
+    </br:Book>
+
+    <br:Book rdf:about="http://www.semanticweb.org/bookrec#silent-patient">
+        <br:title>The Silent Patient</br:title>
+        <br:hasAuthor>Alex Michaelides</br:hasAuthor>
+        <br:hasTheme>Mystery</br:hasTheme>
+        <br:hasTheme>Murder</br:hasTheme>
+        <br:readingLevel>Intermediate</br:readingLevel>
+        <br:description>A psychotherapist becomes obsessed with treating Alicia Berenson, a famous painter who shot her husband and then never spoke another word.</br:description>
+    </br:Book>
+
+    <br:Book rdf:about="http://www.semanticweb.org/bookrec#hunger-games">
+        <br:title>The Hunger Games</br:title>
+        <br:hasAuthor>Suzanne Collins</br:hasAuthor>
+        <br:hasTheme>Science Fiction</br:hasTheme>
+        <br:hasTheme>Fantasy</br:hasTheme>
+        <br:readingLevel>Beginner</br:readingLevel>
+        <br:description>In a dystopian nation, teenager Katniss Everdeen volunteers for a televised fight to the death to save her younger sister.</br:description>
+    </br:Book>
+
+    <br:Book rdf:about="http://www.semanticweb.org/bookrec#foundation">
+        <br:title>Foundation</br:title>
+        <br:hasAuthor>Isaac Asimov</br:hasAuthor>
+        <br:hasTheme>Science Fiction</br:hasTheme>
+        <br:readingLevel>Intermediate</br:readingLevel>
+        <br:description>Mathematician Hari Seldon predicts the fall of the Galactic Empire and sets up the Foundation to preserve civilization across a coming dark age.</br:description>
+    </br:Book>
+
+    <br:Book rdf:about="http://www.semanticweb.org/bookrec#gone-girl">
+        <br:title>Gone Girl</br:title>
+        <br:hasAuthor>Gillian Flynn</br:hasAuthor>
+        <br:hasTheme>Mystery</br:hasTheme>
+        <br:hasTheme>Murder</br:hasTheme>
+        <br:readingLevel>Beginner</br:readingLevel>
+        <br:description>On their fifth wedding anniversary, Nick Dunne's wife Amy disappears, and the investigation reveals a twisting web of deceit.</br:description>
+    </br:Book>
+
+    <!-- users -->
+
+    <br:User rdf:about="http://www.semanticweb.org/bookrec#alice">
+        <br:name>Alice</br:name>
+        <br:readingLevel>Intermediate</br:readingLevel>
+        <br:prefersTheme>Science Fiction</br:prefersTheme>
+    </br:User>
+
+    <br:User rdf:about="http://www.semanticweb.org/bookrec#bob">
+        <br:name>Bob</br:name>
+        <br:readingLevel>Beginner</br:readingLevel>
+        <br:prefersTheme>Mystery</br:prefersTheme>
+    </br:User>
+
+</rdf:RDF>

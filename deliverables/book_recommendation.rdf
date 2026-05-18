@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Exercise 1: book recommendation scenario.
+     A book is recommended for a user when it matches the user's preferred
+     theme and the user's reading level. -->
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:br="http://www.semanticweb.org/bookrec#">
+
+    <!-- reading levels -->
+    <br:ReadingLevel rdf:about="http://www.semanticweb.org/bookrec#Beginner">
+        <rdfs:label>Beginner</rdfs:label>
+    </br:ReadingLevel>
+    <br:ReadingLevel rdf:about="http://www.semanticweb.org/bookrec#Intermediate">
+        <rdfs:label>Intermediate</rdfs:label>
+    </br:ReadingLevel>
+    <br:ReadingLevel rdf:about="http://www.semanticweb.org/bookrec#Advanced">
+        <rdfs:label>Advanced</rdfs:label>
+    </br:ReadingLevel>
+
+    <!-- themes -->
+    <br:Theme rdf:about="http://www.semanticweb.org/bookrec#ScienceFiction">
+        <rdfs:label>Science Fiction</rdfs:label>
+    </br:Theme>
+    <br:Theme rdf:about="http://www.semanticweb.org/bookrec#Fantasy">
+        <rdfs:label>Fantasy</rdfs:label>
+    </br:Theme>
+    <br:Theme rdf:about="http://www.semanticweb.org/bookrec#Mystery">
+        <rdfs:label>Mystery</rdfs:label>
+    </br:Theme>
+    <br:Theme rdf:about="http://www.semanticweb.org/bookrec#Murder">
+        <rdfs:label>Murder</rdfs:label>
+    </br:Theme>
+
+    <!-- users -->
+    <br:User rdf:about="http://www.semanticweb.org/bookrec#Alice">
+        <rdfs:label>Alice</rdfs:label>
+        <br:readingLevel rdf:resource="http://www.semanticweb.org/bookrec#Intermediate"/>
+        <br:prefersTheme rdf:resource="http://www.semanticweb.org/bookrec#ScienceFiction"/>
+    </br:User>
+
+    <br:User rdf:about="http://www.semanticweb.org/bookrec#Bob">
+        <rdfs:label>Bob</rdfs:label>
+        <br:readingLevel rdf:resource="http://www.semanticweb.org/bookrec#Beginner"/>
+        <br:prefersTheme rdf:resource="http://www.semanticweb.org/bookrec#Mystery"/>
+    </br:User>
+
+    <!-- books -->
+    <br:Book rdf:about="http://www.semanticweb.org/bookrec#Dune">
+        <rdfs:label>Dune</rdfs:label>
+        <br:hasTheme rdf:resource="http://www.semanticweb.org/bookrec#ScienceFiction"/>
+        <br:hasTheme rdf:resource="http://www.semanticweb.org/bookrec#Fantasy"/>
+        <br:suitableReadingLevel rdf:resource="http://www.semanticweb.org/bookrec#Advanced"/>
+    </br:Book>
+
+    <br:Book rdf:about="http://www.semanticweb.org/bookrec#TheSilentPatient">
+        <rdfs:label>The Silent Patient</rdfs:label>
+        <br:hasTheme rdf:resource="http://www.semanticweb.org/bookrec#Mystery"/>
+        <br:hasTheme rdf:resource="http://www.semanticweb.org/bookrec#Murder"/>
+        <br:suitableReadingLevel rdf:resource="http://www.semanticweb.org/bookrec#Intermediate"/>
+    </br:Book>
+
+    <br:Book rdf:about="http://www.semanticweb.org/bookrec#HungerGames">
+        <rdfs:label>Hunger Games</rdfs:label>
+        <br:hasTheme rdf:resource="http://www.semanticweb.org/bookrec#ScienceFiction"/>
+        <br:hasTheme rdf:resource="http://www.semanticweb.org/bookrec#Fantasy"/>
+        <br:suitableReadingLevel rdf:resource="http://www.semanticweb.org/bookrec#Beginner"/>
+    </br:Book>
+
+</rdf:RDF>
